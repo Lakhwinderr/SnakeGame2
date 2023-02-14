@@ -1,5 +1,6 @@
 // game constants
 let direction = { x: 0, y: 0 };
+let gameStarted = false;
 const foodSound = new Audio("./music/food.mp3");
 const gameOverSound = new Audio("./music/gameover.mp3");
 const moveSound = new Audio("./music/move.mp3");
@@ -37,6 +38,7 @@ function gameEngine() {
     alert("Game over. Press any key to play again");
     snakeArr = [{ x: 13, y: 15 }];
     score = 0;
+    gameStarted = false;
   }
 
   //if you have eatan the food,regenerate the snake and move
@@ -118,7 +120,18 @@ if (hiscore === null) {
   hiscoreVal.innerHTML = "Hi-Score: " + hiScoreVal;
 }
 window.addEventListener("keydown", (e) => {
-  direction = { x: 0, y: 1 }; //Start the game
+  switch (e.key) {
+  }
+});
+
+
+window.addEventListener("keydown", (e) => {
+  //Start the game
+  
+  if(!gameStarted){
+    gameStarted = true;
+    direction = { x: 0, y: 1 }; 
+  }
   moveSound.play();
   gameSound.play();
   switch (e.key) {
@@ -145,15 +158,18 @@ window.addEventListener("keydown", (e) => {
 
     case "+":
       speed++;
+      // flag = true;
       break;
-    
+
     case "-":
-      if(speed > 1){
+      if (speed > 1) {
         speed--;
       }
+      // flag = true;
       break;
 
     default:
       break;
   }
+  
 });
